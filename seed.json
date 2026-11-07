@@ -1,0 +1,1052 @@
+[
+  {
+    "name": "Basic Hatchet",
+    "description": "Starter axe for chopping trees.",
+    "price": 0,
+    "stock": 999,
+    "category_id": 1,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/4/45/AXEbasic.png/revision/latest?cb=1",
+    "featured": 1,
+    "available": 1
+  },
+  {
+    "name": "Plain Axe",
+    "description": "Standard axe with decent chopping speed.",
+    "price": 150,
+    "stock": 100,
+    "category_id": 1,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Rukiryaxe (Many Axe)",
+    "description": "Multi-blade axe, chops several trees at once.",
+    "price": 2500,
+    "stock": 25,
+    "category_id": 1,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 1,
+    "available": 1
+  },
+  {
+    "name": "Fire Axe",
+    "description": "Axe with fire-themed appearance.",
+    "price": 1800,
+    "stock": 30,
+    "category_id": 1,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "End Times Axe",
+    "description": "Rare and powerful end-game axe.",
+    "price": 12000,
+    "stock": 5,
+    "category_id": 1,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 1,
+    "available": 1
+  },
+  {
+    "name": "Bird Axe",
+    "description": "Collectible bird-themed axe.",
+    "price": 9000,
+    "stock": 8,
+    "category_id": 1,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/9/91/AXEbird.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Oak",
+    "description": "Oak Wood (referred to as Generic internally) is the most accessible Wood type in the game. It can be easily cut with nearly every Axe and can be found in the Main Biome, Cherry Meadow, and the Mountainside.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/a/a8/Oak_Tree.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Elm",
+    "description": "Elm Wood (known in-game as Oak Wood) is an abundant and widely used species of Wood. It can be cut by most axes except the Candy Cane Axe. This type of wood is often cut up and sold in the Wood Dropoff as a quick way to make money for new players or used as a plentiful material for making long planks or filling in Blueprints.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/e/e6/Elm_Tree.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Cherry",
+    "description": "Cherry Wood is a commonly used type of wood in the game. The wood frequently spawns in the Cherry Meadow - a spot in the Main Biome where this tree spawns in great quantities. This wood also spawns in places in the Main Biome and in the Safari.",
+    "price": 500000,
+    "stock": 200,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/0/08/CherryTree.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Walnut",
+    "description": "Walnut Wood is a type of Wood that was added on August 14th, 2015, growing exclusively in the Safari. Its relatively low value and its location make Walnut Wood an inefficient choice for farming for Money. However, due to its dark color, it is a popular choice of wood used for building.",
+    "price": 500000,
+    "stock": 200,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/3/3e/Dead_tree.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Fir",
+    "description": "Fir Wood is a type of wood that is exclusive within the Taiga. It is commonly confused with Pine Wood. Despite them having the same appearance, they both contrast on special file properties that establish them as different from one another.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/8/86/Fir_Tree.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Pine",
+    "description": "Pine Wood is a species of wood that is found exclusively in the Taiga. It is usually confused with Fir Wood, but both contrast on special file properties that establish them as different from each other.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/6/61/PineTree.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Lava",
+    "description": "Volcano Wood, also referred to as Lava Wood, Red Wood, or Fire Wood, is the only tree that grows at the peak of the Volcano.",
+    "price": 500000,
+    "stock": 50,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/d/df/LavaTree.png/revision/latest?cb=1",
+    "featured": 1,
+    "available": 1
+  },
+  {
+    "name": "TL OF Spook",
+    "description": "Spooky Wood, also referred to as Spook Wood, is a type of wood that was introduced during the 2015 Halloween Update along with Sinister Wood.",
+    "price": 500000,
+    "stock": 40,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/1/17/3SpookTrees2015.png/revision/latest?cb=1",
+    "featured": 1,
+    "available": 1
+  },
+  {
+    "name": "TL OF Phantom",
+    "description": "Phantom Wood, also known as End Times Wood, is a variant of Wood that was added during the 2016 End Times Update. It is located in the Lone Cave and is the most valuable wood (as both Logs and Planks) in the game when sold at the Wood Dropoff.",
+    "price": 500000,
+    "stock": 29,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/5/5a/Phantomtreeworklight.png/revision/latest?cb=1",
+    "featured": 1,
+    "available": 1
+  },
+  {
+    "name": "Present",
+    "description": "In-game present box item.",
+    "price": 100,
+    "stock": 47,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/5/54/Deliciouspinkpresentofbubblyfun_check.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Acceptable Gift from Bob",
+    "description": "Use it to consume food!",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/0/0b/Acceptable_Gift_from_Bob.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Antithetical Gift of Opposites",
+    "description": "!enod boJ",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "BIG GIFT",
+    "description": "WOW THAT'S A BIG GIFT",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/d/db/BIGGIFT.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Bright Gift",
+    "description": "twinkle twinkle✨",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/e/e8/Brightgiftcheck.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Burnt Gift",
+    "description": "It smells crispy.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/a/a2/Burnt_Gift_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Chilly Gift of Deep Cold",
+    "description": "A cold draft seeps from the seams of this gift.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/b/bb/Chillygiftofdeepcoldcheck.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Cold and Wet and Lumpy Gift from Bob",
+    "description": "it's cold... .. ., ,it's wet ,,. . ..it's .. .. LUMPY! 😳",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/e/e5/Cold_and_Wet_and_Lumpy_Gift_from_Bob_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Daisy Gift",
+    "description": "Bellis perennis is a common European species of daisy, of the Asteraceae family, often considered the archetypal species of",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/4/4d/DaisyGift.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Dark Gift",
+    "description": "Darkness ? ? ??",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/2/2a/1Dark_Gift.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Delicious Pink Present of Bubbly Fun",
+    "description": "😋🤤🫧",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/4/4e/Delicious_Pink_Gift_Of_Bubbly_Fun_boxed.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Delightful Lime Present of Excellent Endearance",
+    "description": "What shall it beith thisn timen?",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/d/d8/Limeballcheck.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Duck Shaped Gift",
+    "description": "It is shaped like a duck, but there could be anything in it.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/6/61/DuckGiftStockImg.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Fabulous Gift",
+    "description": "It's definitely fabulous!!",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/b/b6/Fabulous_Gift_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Fiery Gift of Lumber",
+    "description": "Cut a little wood, cut a lot of wood. You're a lumber person, and you know how to get the job done.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Adventure",
+    "description": "There's nothing like a new year.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/b/b9/AdvGiftStockImg.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Citrus Tart",
+    "description": "NOT FOR CONSUMPTION",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/Giftofcitrustartcheck.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Comfort",
+    "description": "You never know.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/b/bf/Giftofcomfortcheck.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Critically Acclaimed Knowledge",
+    "description": "This gifts make you feel ready to brawl!",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/9/91/Gift_Of_Critically_Acclaimed_Knowledge.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Enchanted Tales",
+    "description": "You are enchanted with anticipation for this gift.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/6/6b/Giftofenchantedtalescheck.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Forbidden Knowledge",
+    "description": "i dont get it",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/2/23/Forbiddengiftcheck.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Good Health",
+    "description": "It makes you hungry.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/3/30/GiftGoodHealth2022.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Good Preparedness",
+    "description": "Never be caught without one of these when things turn awry.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/0/0c/Gift_of_Good_Preparedness_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Important Game Knowledge",
+    "description": "a book?",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/ca/THUMBGIFTimportantgameknowledge.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Individualism",
+    "description": "Beautiful!",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/4/46/Boxedgiftofindividualism.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Pixelation",
+    "description": "a pixel?",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/d/d9/THUMBGIFTpixelation.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Plump Appetites",
+    "description": "Refrigerate at all costs!",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/0/02/1Gift_of_Plump_Appetites.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Snow",
+    "description": "The snow is thick with this one.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/e/e2/BoxedCarsGift.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Spooky Knowledge",
+    "description": "This gift makes you scared 😟🥲",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/cd/Giftofspookyknowledge_check.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Tremendously Important Knowledge",
+    "description": "This gift makes you look back melancholically at your lost youth.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/5/59/Gift_of_Tremendously_Important_Knowledge_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift of Unhealthy Diets",
+    "description": "Mmmmmm",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/2/2b/Gift_of_Unhealthy_Diets_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift with Candy Cane Stripes",
+    "description": "The gift has stripes that resemble a candy cane.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/e/ec/CandyGiftStockImg.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift with Green Candy Cane Stripes",
+    "description": "The gift has stripes that resemble a green candy cane.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/d/dc/Gift_with_Green_Candy_Cane_Stripes_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gift with Yellow Candy Cane Stripes",
+    "description": "The gift has stripes that resemble a yellow candy cane?",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/9/93/Gift_with_Yellow_Candy_Cane_Stripes.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Gingerbread Gift",
+    "description": "Yes it's a gingerbread gift.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Grand Gift of Twenty Facets",
+    "description": "Try your luck with this gift?",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/a/a4/Goldend20.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Green Gift of Good Golly Goodness",
+    "description": "Candy???",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Happy Blue Gift of Fun",
+    "description": "Some people just want to have fun!",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/5/56/Happy_Blue_Gift_of_Fun_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Happy Red Gift of Fun",
+    "description": "Everybody just wants to have fun!",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/d/d3/Happy_Red_Gift_of_Fun_Preview_Screen.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Hasty Gift of Refined Refinement",
+    "description": "Be careful…",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Jingly Gift of Jingles",
+    "description": "JINGLE JINGLE DO YOU HEAR THAT?",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/d/d1/Jingly_Gift_of_Jingles_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Joyful Green Gift of High Quality Charm",
+    "description": "What's it going to be this year??",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/6/69/Joyful_Green_Gift_of_High_Quality_Charm_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Modern Gift",
+    "description": "Exquisite!",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/1/15/ModernGiftUnboxedPlain.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Murky Gift of Goo",
+    "description": "This one smells kinda funky.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/3/3f/1Murky_Gift_of_Goo.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Old Gift of Oxidation",
+    "description": "Smells like iron!",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Orange Gift of Traffic Control and Corporate Power",
+    "description": "On an unrelated note, please play CONE.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/f/f3/Orange_Gift_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Poorly Wrapped Gift from Bob",
+    "description": "It's probably coal.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/2/28/Poorly_Wrapped_Gift_from_Bob_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Prismatic Present of Whimsy and Wonder",
+    "description": "🌈",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/4/49/Prismaticgiftcheck.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Round and Flat Gift",
+    "description": "Do NOT purchase unless you really trust round and flat things!",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/ce/RoundGiftStockImg.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Rugged Gift",
+    "description": "Smells... Earthy..?",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/e/e9/Ruggedgift_check.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Shiny Gift of Sweet Sounds",
+    "description": "Something inside just cant keep quiet.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/3/33/BlueGift.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Silly Gift of Six Sides",
+    "description": "Take a chance on this gift?",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/d/db/THUMBGIFTsillysixsides.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Spooky Deep Earth Gift",
+    "description": "Eeeaarrooohhh",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Sweet Gift",
+    "description": "Hm, sweet!",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Tall Gift of Stone",
+    "description": "It's a",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/3/34/THUMBGIFTTall.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Tall Gift of Stripes",
+    "description": "Pin",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/f/f6/1Tall_Gift_of_Stripes.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Teal Gift",
+    "description": "You're pretty sure it's teal???",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/7/72/THUMBBOXballofteal.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "The Gift of Great Times",
+    "description": "BORK BORK",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c9/39aab82009d85106ee334ee6ebbda380.webp/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "The Golden Gift of Golden Times",
+    "description": "In appeal of vanity.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/2/2a/The_Golfen_Gift_of_Golden_Times_Preview_Screen.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Trivial Gift of Ten Tangents",
+    "description": "take another chance on this gift?",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/6/66/THUMBtrivialgiftoftentangents.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Twinkly Gift",
+    "description": "shine bright 😜",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/3/33/BlueGift.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Very Cold Gift",
+    "description": "It's a little cold and damp :/",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/1/1e/1Very_Cold_Gift.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Very Plum Gift",
+    "description": "sorry I forgot this one.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/3/3d/Very_Plum_Gift_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Warm Gift of Love and Safety",
+    "description": "This gift soothes you.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c4/WarmGiftStockImg.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Weighted Gift of Immense Friendship",
+    "description": "What's in these gifts, rocks???",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c4/4dd25b2ea91b2a2c52759c531e0bd665.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Weighted Gift of Weight",
+    "description": "It's heavy so watch out.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/9/93/1Weighted_Gift_of_Weight.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Wide Gift of Stone",
+    "description": "What's in these gifts, rocks???",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/a/a5/THUMBGIFTWide.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Wobblier Gift of Less Certainty",
+    "description": "¿ ¿ ¿",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/0/0c/Oldwobblier.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Wobbly Gift Of Lowest Confidence",
+    "description": "Hmmm .. .. : -/",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/f/fc/Wobbly_Gift_of_Low_Confidence_Location_1.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Wobbly Gift of Doom and Despair",
+    "description": "; (",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/7/7b/Wobblygiftofdoomanddespair_check.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Wobbly Gift of High Confidence",
+    "description": "You are confident about what is in this gift.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/1/12/Wobbly_Gift_of_High_Confidence_Fix.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Wobbly Gift of Low Confidence",
+    "description": "You are not confident about what this gift is at all!!",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/f/fc/Wobbly_Gift_of_Low_Confidence_Location_1.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Wobbly Gift of Most Confusion",
+    "description": "You cannot possibly guess the contents.",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/f/fe/Wobblygiftofmostconfusioncheck.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Wobbly Gift of Mostly Teal",
+    "description": "It's Teal ?? ??",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/e/eb/Wobbly_Gift_of_Mostly_Teal_Location.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Wobbly Gift of Shock and Awe",
+    "description": "w o a h",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/0/0c/Awewobblecheck.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Wobbly Gift of Snow and Ice",
+    "description": "❄️‎ ‎ ‎ ‎ ‎ ‎ : ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ (",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/d/d3/Wobblygiftofsnowandicecheck.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "Wobbly Gift of Uncertainty",
+    "description": "???",
+    "price": 100,
+    "stock": 999,
+    "category_id": 4,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/a/ac/Wobbly_Gift_of_Uncertainty_Fix.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Birch",
+    "description": "Birch Wood is a type of wood that can be found in both the Mountainside and Tropics biomes. Birch wood serves a popular wood choice for newer players looking to farm for money owing to the ideal balance between its value and the short time it takes to travel to and harvest it. Its ease of obtaining and light color also serve to make Birch wood a popular choice for building.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/1/11/BirchTree.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Blue Spruce",
+    "description": "Blue Spruce, also known as Bspruce or Bruce is a wood type that was introduced during the 2023 Christmas Event. It returns annually every Winter event.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/a/a4/Blue_Spruce_tree_growing_into_an_elder.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Cavecrawler",
+    "description": "Cavecrawler Wood, commonly referred to as Blue Wood and historically, Electric Wood, is a wood type that grows exclusively in the Cavecrawler Cavern within the Maze. It was added during the January Mega Update.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/b/bf/CavecrawlerTree.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Frost",
+    "description": "Frost Wood, commonly referred to as Ice Wood, is the only type of wood that grows at the Taiga Peak. It was added to the game on May 13th, 2018, finally making use of the Taiga Mountain Passage.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/2/23/Bridge_structure.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Gold",
+    "description": "Gold Wood or Gold Swamp Wood (referred to in the game files as \"GoldSwampy\") is a naturally colored wood that was added on August 28, 2015. It is located exclusively within the Swamp, along with Zombie Wood. Gold wood is worth slightly more than Lava Wood, but the time-consuming nature of travelling to and from the Swamp to harvest Gold Wood deters most players from harvesting it as a money source, often instead opting to harvest Lava Wood or Frost Wood.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/0/07/Gold_Tree.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Gray",
+    "description": "Gray Wood is a blueprint that has no defined, or [https://www.lua.org/pil/2.1.html nil], wood type. It was only obtainable through glitches at various points in LT2 history. As its name suggests, it has a medium gray color.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c4/4dd25b2ea91b2a2c52759c531e0bd665.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Koa",
+    "description": "Koa Wood is a type of wood found exclusively within the Tropics. It is most commonly used to fill in blueprints rather than for selling, as its location and sell price make it an inefficient source of money.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/7/75/AcaciaTree.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Maple",
+    "description": "Maple Wood is a Wood type that was introduced on November 1st, 2026.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/e/ef/Lumberland_filled_with_maple_trees.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Palm",
+    "description": "Palm Wood is a type of wood exclusive to the Sand Islands which was added on January 23rd, 2016.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/2/2b/PalmIslandGuide.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Pink",
+    "description": "Pink Wood was a mysterious wood type in Lumber Tycoon 2 that has since been removed from the game. It has the same exterior as Oak, but with a pink interior.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/c/c4/4dd25b2ea91b2a2c52759c531e0bd665.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Sinister",
+    "description": "Sinister Wood is a type of wood that was introduced during the 2015 Halloween Update, along with Spooky Wood. Its appearance became an annual occurrence every successive October. It is the most elusive tree in the game, having a 1% chance to spawn in place of a Spook tree. Sinister wood is the most time-consuming wood to fully cut compared to all other woods in Lumber Tycoon 2.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/6/6f/2020Sinister.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Snowglow",
+    "description": "Snowglow Wood, officially Glowing Fir Wood, and sometimes by the community Yellow Wood, is a variant of Wood that was first introduced for the duration of the Winter Games 2017 Event. It was reintroduced inside of the Ticktatwert memorial.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/2/22/DeadSnowglow.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  },
+  {
+    "name": "TL OF Zombie",
+    "description": "Zombie Wood, also known as Green Wood, is a type of Wood found exclusively in the Swamp along with Gold Wood. Its leaves are grey with the granite texture and have a square surface. When milled, it produces a bright green plank. Its leaves look like a grey countertop sold at Fancy Furnishings. Both Zombie Wood and Gold Wood were added on August 28, 2015.",
+    "price": 500000,
+    "stock": 999,
+    "category_id": 3,
+    "image": "https://static.wikia.nocookie.net/lumber-tycoon-2/images/3/3e/Dead_tree.png/revision/latest?cb=1",
+    "featured": 0,
+    "available": 1
+  }
+]
