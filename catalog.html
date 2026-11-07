@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LT2 Marketplace — Item Catalog</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="brand-dot"></span>LT2 Marketplace</a>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="catalog.html" class="active">Catalog</a>
+  </nav>
+  <div class="searchbar">
+    <span style="color:var(--text-3)">⌕</span>
+    <input id="catSearch" placeholder="Search catalog…" oninput="render()">
+  </div>
+</header>
+
+<section class="section" style="padding-top:120px">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Game Item Catalog</h2>
+      <p class="section-subtitle">Complete Lumber Tycoon 2 item database — 774 items across 40 categories</p>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap">
+    <select id="catCatFilter" style="padding:8px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px" onchange="render()">
+      <option value="All">All categories</option>
+    </select>
+    <select id="catObtFilter" style="padding:8px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px" onchange="render()">
+      <option value="All">All availability</option>
+      <option value="obtainable">Obtainable</option>
+      <option value="rare">Rare</option>
+      <option value="limited">Limited</option>
+      <option value="unobtainable">Unobtainable</option>
+    </select>
+  </div>
+  <div class="grid" id="catGrid"></div>
+</section>
+
+<script>
+let catalog = [];
+async function load(){
+  const res = await fetch('/api/catalog');
+  catalog = await res.json();
+  const cats = [...new Set(catalog.map(c=>c.category))].sort();
+  const sel = document.getElementById('catCatFilter');
+  cats.forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent=c; sel.appendChild(o); });
+  render();
+}
+function render(){
+  const q = document.getElementById('catSearch').value.toLowerCase();
+  const cat = document.getElementById('catCatFilter').value;
+  const obt = document.getElementById('catObtFilter').value;
+  let list = catalog;
+  if(cat!=='All') list = list.filter(c=>c.category===cat);
+  if(obt!=='All') list = list.filter(c=>c.obtainability===obt);
+  if(q) list = list.filter(c=>(c.name+c.description+c.category).toLowerCase().includes(q));
+  const el = document.getElementById('catGrid');
+  if(!list.length){ el.innerHTML='<div class="empty" style="grid-column:1/-1"><div class="empty-icon">∅</div><h3>No items found</h3></div>'; return; }
+  el.innerHTML = list.map(c=>`
+    <div class="card">
+      <div class="imgwrap"><div class="img">${c.image_url?`<img src="${c.image_url}" style="width:100%;height:100%;object-fit:cover">`:'🌲'}</div></div>
+      <div class="body">
+        <div class="name">${c.name}</div>
+        <div class="desc">${c.description}</div>
+        <div class="price-row">
+          <div style="font-size:12px;color:var(--text-3)">${c.category}</div>
+          <div class="avail"><span class="avail-dot ${c.obtainability==='obtainable'?'':'out'}"></span>${c.obtainability}</div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+load();
+</script>
+</body>
+</html>
