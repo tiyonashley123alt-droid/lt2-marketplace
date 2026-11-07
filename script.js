@@ -172,7 +172,7 @@ function openCheckout(){
       <div class="field"><label>Discord Username (optional)</label><input id="discordUser" placeholder="Your Discord tag"></div>
       <h3 style="margin-top:8px">Payment Method</h3>
       <div class="pay-option disabled" id="robuxOpt"><span class="radio"></span><span>Robux</span><span style="margin-left:auto;font-size:12px;color:var(--text-3)">Unavailable</span></div>
-      <div class="pay-option" id="cardOpt" data-method="card"><span class="radio"></span><span>Credit / Debit Card (Stripe)</span><span style="margin-left:auto;font-size:12px;color:var(--text-3)">→</span></div>
+      <div class="pay-option" id="cardOpt" data-method="card"><span class="radio"></span><span>Credit / Debit Card (Square)</span><span style="margin-left:auto;font-size:12px;color:var(--text-3)">→</span></div>
       <div class="pay-option" id="lt2Opt" data-method="lt2money"><span class="radio"></span><span>LT2 Money (In-game)</span><span style="margin-left:auto;font-size:12px;color:var(--text-3)">→</span></div>
       <button id="submitOrder" class="btn primary" style="width:100%;margin-top:8px">Place Order</button>
     </div>`;
@@ -198,7 +198,7 @@ function openCheckout(){
       const r2 = await fetch(API+'/api/create-checkout-session',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({order_number:data.order_number})});
       const d2 = await r2.json();
       if(d2.url){ window.location.href = d2.url; }
-      else { alert(d2.error||'Stripe not configured'); }
+      else { alert(d2.error||'Square not configured'); }
     } else {
       cart = []; saveCart();
       closeModal('checkoutModal');
