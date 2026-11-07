@@ -1,11 +1,6 @@
 node_modules/
 tmp/
-images/
 .polydev/
-.base/
-*.db
-*.db-wal
-*.db-shm
 .env
 .DS_Store
 EOF
