@@ -181,11 +181,11 @@ app.post('/api/create-checkout-session', async (req, res) => {
   const items = JSON.parse(o.items);
   const return_url = PAYPAL_REDIRECT + '/success.html?order=' + order_number;
   const cancel_url = PAYPAL_REDIRECT + '/';
-  const paypal_items = items.map(i => ({
-    name: i.name,
-    unit_amount: { currency_code: 'USD', value: (i.price * i.qty).toFixed(2) },
-    quantity: { value: String(i.qty) }
-  }));
+    const paypal_items = items.map(i => ({
+      name: i.name,
+      unit_amount: { currency_code: 'USD', value: (i.price * i.qty).toFixed(2) },
+      quantity: String(i.qty)
+    }));
   const total = items.reduce((a, i) => a + i.price * i.qty, 0).toFixed(2);
   try {
     const token = await getPayPalToken();
