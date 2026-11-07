@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Admin Dashboard — LT2 Marketplace</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body>
+<header class="topbar"><a href="index.html" class="brand"><span class="brand-dot"></span>LT2 Marketplace Admin</a><nav class="nav"><a href="index.html">Store</a><a href="#" id="logout">Logout</a></nav></header>
+<main class="section">
+<h2>Dashboard</h2>
+<div id="stats" class="stat-grid" style="margin-bottom:24px"></div>
+<h3>Products</h3>
+<button id="addProd" class="btn primary" style="margin-bottom:12px">+ Add Product</button>
+<div id="prodTable" class="admin-card" style="overflow:auto"></div>
+<h3 style="margin-top:32px">Catalog (Game Item Database)</h3>
+<div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+  <input id="catSearch" placeholder="Search catalog" style="flex:1;min-width:200px">
+  <select id="catCatFilter"><option value="All">All categories</option></select>
+  <select id="catObtFilter"><option value="All">All</option><option value="obtainable">Obtainable</option><option value="rare">Rare</option><option value="limited">Limited</option><option value="unobtainable">Unobtainable</option></select>
+  <button id="addCat" class="btn primary">+ Add Catalog Item</button>
+</div>
+<div id="catTable" class="admin-card" style="overflow:auto;margin-bottom:24px"></div>
+
+<h3 style="margin-top:32px">Orders</h3>
+<div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+  <select id="statusFilter"><option>All</option><option>Pending</option><option>Awaiting In-Game Payment</option><option>Payment Received</option><option>Processing</option><option>Ready for Delivery</option><option>Completed</option><option>Cancelled</option></select>
+  <input id="orderSearch" placeholder="Search orders" style="flex:1;min-width:200px">
+</div>
+<div id="orderTable"></div>
+</main>
+<script>
+const token=localStorage.getItem('adminToken');
+if(!token){window.location.href='admin-login.html';}
+const H={'Authorization':'Bearer '+token,'Content-Type':'application/json'};
+const $=s=>document.querySelector(s);
+
+async function loadStats(){
+  const r=await fetch('/api/admin/stats',{headers:H}); const d=await r.json();
+  document.getElementById('stats').innerHTML=`
+    <div class="stat"><div class="label">Total Orders</div><div class="value">${d.totalOrders}</div></div>
+    <div class="stat"><div class="label">Pending</div><div class="value">${d.pending}</div></div>
+    <div class="stat"><div class="label">Completed</div><div class="value">${d.completed}</div></div>
+    <div class="stat"><div class="label">Revenue</div><div class="value">LT2$${d.revenue.toLocaleString()}</div></div>
+    <div class="stat"><div class="label">Available</div><div class="value">${d.available}</div></div>
+    <div class="stat"><div class="label">Out of Stock</div><div class="value">${d.outOfStock}</div></div>`;
+}
+
+async function loadProducts(){
+  const r=await fetch('/api/products'); const d=await r.json();
+  document.getElementById('prodTable').innerHTML='<table><tr><th>Name</th><th>Price</th><th>Stock</th><th>Category</th><th>Actions</th></tr>'+
+    d.map(p=>`<tr><td>${p.image} ${p.name}</td><td>$${p.price}</td><td>${p.stock}</td><td>${p.category_name}</td>
+    <td><button class="btn sm ghost" onclick="editProd(${p.id})">Edit</button> <button class="btn sm ghost" onclick="delProd(${p.id})">Delete</button></td></tr>`).join('')+'</table>';
+}
+
+async function loadOrders(){
+  const st=document.getElementById('statusFilter').value;
+  const q=document.getElementById('orderSearch').value;
+  const r=await fetch('/api/admin/orders?status='+encodeURIComponent(st)+'&q='+encodeURIComponent(q),{headers:H});
+  const d=await r.json();
+  document.getElementById('orderTable').innerHTML=d.map(o=>`
+    <div class="orderbox">
+      <b>${o.order_number}</b> — ${o.roblox_username} — $${o.total} — ${o.payment_method}<br>
+      Status: <b>${o.order_status}</b> | Payment: ${o.payment_status} | Delivery: ${o.delivery_status}<br>
+      Items: ${o.items.map(i=>i.name+' x'+i.qty).join(', ')}<br>
+      <select onchange="updateOrder(${o.id},this.value)" style="margin-top:8px">${['Pending','Awaiting Payment','Awaiting In-Game Payment','Payment Received','Processing','Ready for Delivery','Completed','Cancelled'].map(s=>`<option ${s===o.order_status?'selected':''}>${s}</option>`).join('')}</select>
+    </div>`).join('');
+}
+
+async function updateOrder(id,status){
+  await fetch('/api/admin/orders/'+id,{method:'PUT',headers:H,body:JSON.stringify({order_status:status})});
+  loadOrders(); loadStats();
+}
+
+async function delProd(id){
+  if(!confirm('Delete product?')) return;
+  await fetch('/api/admin/products/'+id,{method:'DELETE',headers:H});
+  loadProducts(); loadStats();
+}
+
+function editProd(id){
+  fetch('/api/products/'+id).then(r=>r.json()).then(p=>{
+    const newName=prompt('Name',p.name); if(newName===null) return;
+    const newPrice=prompt('Price',p.price); if(newPrice===null) return;
+    const newStock=prompt('Stock',p.stock); if(newStock===null) return;
+    const newDesc=prompt('Description',p.description);
+    fetch('/api/admin/products/'+id,{method:'PUT',headers:H,body:JSON.stringify({name:newName,description:newDesc,price:parseFloat(newPrice),stock:parseInt(newStock),category_id:p.category_id,image:p.image,featured:p.featured,available:p.available})})
+      .then(()=>{loadProducts();loadStats();});
+  });
+}
+
+document.getElementById('addProd').onclick=()=>{
+  const name=prompt('Name'); if(!name) return;
+  const price=prompt('Price'); if(!price) return;
+  const stock=prompt('Stock','10');
+  const desc=prompt('Description','');
+  const img=prompt('Image emoji','📦');
+  fetch('/api/admin/products',{method:'POST',headers:H,body:JSON.stringify({name,description:desc,price:parseFloat(price),stock:parseInt(stock),image:img,available:1,featured:0})})
+    .then(()=>{loadProducts();loadStats();});
+};
+
+document.getElementById('statusFilter').onchange=loadOrders;
+document.getElementById('orderSearch').oninput=loadOrders;
+document.getElementById('logout').onclick=(e)=>{e.preventDefault();localStorage.removeItem('adminToken');window.location.href='admin-login.html';};
+
+let catalogItems=[];
+async function loadCatalogCats(){
+  const r=await fetch('/api/catalog-categories'); const d=await r.json();
+  const sel=document.getElementById('catCatFilter');
+  sel.innerHTML='<option value="All">All categories</option>'+d.map(c=>`<option value="${c}">${c}</option>`).join('');
+}
+async function loadCatalog(){
+  const q=document.getElementById('catSearch').value;
+  const cat=document.getElementById('catCatFilter').value;
+  const obt=document.getElementById('catObtFilter').value;
+  const r=await fetch('/api/catalog?category='+encodeURIComponent(cat)+'&q='+encodeURIComponent(q)+'&obtainability='+encodeURIComponent(obt));
+  catalogItems=await r.json();
+  document.getElementById('catTable').innerHTML='<table><tr><th>Name</th><th>Category</th><th>Obtainability</th><th>Approved</th><th>Actions</th></tr>'+
+    catalogItems.map(c=>`<tr><td>${c.image_url||'📦'} ${c.name}</td><td>${c.category}</td><td>${c.obtainability}</td><td>${c.approved?'Yes':'No'}</td>
+    <td>
+      <button class="btn sm ghost" onclick="editCat(${c.id})">Edit</button>
+      <button class="btn sm ghost" onclick="approveCat(${c.id})">Approve→Shop</button>
+      <button class="btn sm ghost" onclick="delCat(${c.id})">Delete</button>
+    </td></tr>`).join('')+'</table>';
+}
+async function approveCat(id){
+  const price=prompt('Shop price'); if(price===null) return;
+  const stock=prompt('Stock','10');
+  await fetch('/api/admin/catalog/'+id+'/approve',{method:'POST',headers:H,body:JSON.stringify({price:parseFloat(price),stock:parseInt(stock)})});
+  loadCatalog(); loadProducts(); loadStats();
+}
+async function delCat(id){
+  if(!confirm('Delete catalog item?')) return;
+  await fetch('/api/admin/catalog/'+id,{method:'DELETE',headers:H});
+  loadCatalog();
+}
+function editCat(id){
+  const c=catalogItems.find(x=>x.id===id);
+  const name=prompt('Name',c.name); if(name===null) return;
+  const category=prompt('Category',c.category); if(category===null) return;
+  const desc=prompt('Description',c.description||'');
+  const img=prompt('Image',c.image_url||'📦');
+  const obt=prompt('Obtainability (obtainable/rare/limited/unobtainable)',c.obtainability);
+  const approved=confirm('Approved for shop?')?1:0;
+  fetch('/api/admin/catalog/'+id,{method:'PUT',headers:H,body:JSON.stringify({name,category,description:desc,image_url:img,obtainability:obt,approved})})
+    .then(()=>loadCatalog());
+}
+document.getElementById('addCat').onclick=()=>{
+  const name=prompt('Name'); if(!name) return;
+  const category=prompt('Category','Axes'); if(!category) return;
+  const desc=prompt('Description','');
+  const img=prompt('Image','📦');
+  const obt=prompt('Obtainability','obtainable');
+  fetch('/api/admin/catalog',{method:'POST',headers:H,body:JSON.stringify({name,category,description:desc,image_url:img,obtainability:obt})})
+    .then(()=>loadCatalog());
+};
+document.getElementById('catSearch').oninput=loadCatalog;
+document.getElementById('catCatFilter').onchange=loadCatalog;
+document.getElementById('catObtFilter').onchange=loadCatalog;
+
+loadCatalogCats().then(loadCatalog);
+loadStats(); loadProducts(); loadOrders();
+</script></body></html>
