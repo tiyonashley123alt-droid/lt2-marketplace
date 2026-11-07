@@ -183,7 +183,7 @@ app.post('/api/create-checkout-session', async (req, res) => {
   const cancel_url = PAYPAL_REDIRECT + '/';
     const paypal_items = items.map(i => ({
       name: i.name,
-      unit_amount: { currency_code: 'USD', value: (i.price * i.qty).toFixed(2) },
+      unit_amount: { currency_code: 'USD', value: i.price.toFixed(2) },
       quantity: String(i.qty)
     }));
   const total = items.reduce((a, i) => a + i.price * i.qty, 0).toFixed(2);
