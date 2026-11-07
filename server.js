@@ -11,10 +11,11 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 const JWT_SECRET = process.env.JWT_SECRET || 'change-me-in-production';
-const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
-const SQUARE_LOCATION_ID = process.env.SQUARE_LOCATION_ID;
-const SQUARE_ENV = process.env.SQUARE_ENV || 'sandbox';
-const SQUARE_BASE = SQUARE_ENV === 'production' ? 'https://connect.squareup.com' : 'https://connect.squareupsandbox.com';
+const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
+const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET;
+const PAYPAL_ENV = process.env.PAYPAL_ENV || 'sandbox';
+const PAYPAL_BASE = PAYPAL_ENV === 'sandbox' ? 'https://api-m.sandbox.paypal.com' : 'https://api-m.paypal.com';
+const PAYPAL_REDIRECT = process.env.PAYPAL_REDIRECT || 'http://127.0.0.1:8080';
 
 // ---------- Auth ----------
 function auth(req, res, next) {
@@ -156,69 +157,89 @@ app.get('/api/admin/stats', auth, (req, res) => {
   res.json({ totalOrders, pending, completed, revenue, available, outOfStock });
 });
 
-// ---------- Square card payment ----------
+// ---------- PayPal card payment ----------
+async function getPayPalToken() {
+  const auth = Buffer.from(PAYPAL_CLIENT_ID + ':' + PAYPAL_CLIENT_SECRET).toString('base64');
+  const resp = await fetch(PAYPAL_BASE + '/v1/oauth2/token', {
+    method: 'POST',
+    headers: { 'Authorization': 'Basic ' + auth, 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'grant_type=client_credentials'
+  });
+  const data = await resp.json();
+  if (!data.access_token) throw new Error('PayPal token error: ' + JSON.stringify(data));
+  return data.access_token;
+}
+
 app.post('/api/create-checkout-session', async (req, res) => {
-  if (!SQUARE_ACCESS_TOKEN || !SQUARE_LOCATION_ID) return res.status(503).json({ error: 'Square not configured. Set SQUARE_ACCESS_TOKEN and SQUARE_LOCATION_ID in .env' });
+  if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) return res.status(503).json({ error: 'PayPal not configured. Set PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET in .env' });
   const { order_number } = req.body || {};
   const o = db.prepare('SELECT * FROM orders WHERE order_number=?').get(order_number);
   if (!o) return res.status(404).json({ error: 'Order not found' });
   if (o.payment_method !== 'card') return res.status(400).json({ error: 'Not a card order' });
   const items = JSON.parse(o.items);
-  const origin = req.headers.origin || 'http://127.0.0.1:8080';
-  const lineItems = items.map(i => ({
+  const return_url = PAYPAL_REDIRECT + '/success.html?order=' + order_number;
+  const cancel_url = PAYPAL_REDIRECT + '/';
+  const paypal_items = items.map(i => ({
     name: i.name,
-    quantity: String(i.qty),
-    base_price_money: { amount: Math.round(i.price * 100), currency: 'USD' }
+    unit_amount: { currency_code: 'USD', value: (i.price * i.qty).toFixed(2) },
+    quantity: { value: String(i.qty) }
   }));
+  const total = items.reduce((a, i) => a + i.price * i.qty, 0).toFixed(2);
   try {
-    const resp = await fetch(`${SQUARE_BASE}/v2/online-checkout/payment-links`, {
+    const token = await getPayPalToken();
+    const resp = await fetch(PAYPAL_BASE + '/v2/checkout/orders', {
       method: 'POST',
       headers: {
-        'Square-Version': '2024-01-18',
-        'Authorization': `Bearer ${SQUARE_ACCESS_TOKEN}`,
-        'Content-Type': 'application/json'
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
       },
       body: JSON.stringify({
-        idempotency_key: order_number + '-' + Date.now(),
-        quick_pay: null,
-        order: {
-          location_id: SQUARE_LOCATION_ID,
-          line_items: lineItems
-        },
-        checkout_options: {
-          redirect_url: `${origin}/success.html?order=${order_number}`
-        },
-        pre_populated_data: {
-          buyer_email: undefined
+        intent: 'CAPTURE',
+        purchase_units: [{
+          items: paypal_items,
+          amount: {
+            currency_code: 'USD',
+            value: total,
+            breakdown: { item_total: { currency_code: 'USD', value: total } }
+          }
+        }],
+        application_context: {
+          return_url,
+          cancel_url
         }
       })
     });
     const data = await resp.json();
-    if (data.errors) {
-      return res.status(400).json({ error: data.errors[0]?.detail || 'Square error' });
-    }
-    const url = data.payment_link?.url;
-    if (!url) return res.status(500).json({ error: 'No checkout URL returned' });
-    db.prepare('UPDATE orders SET payment_status=? WHERE order_number=?').run('Pending', order_number);
-    res.json({ url });
+    if (data.details) return res.status(400).json({ error: data.details[0]?.description || 'PayPal error' });
+    const approveUrl = (data.links || []).find(l => l.rel === 'approve')?.href;
+    if (!approveUrl) return res.status(500).json({ error: 'No PayPal approval URL' });
+    res.json({ url: approveUrl });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
 app.post('/api/verify-payment', async (req, res) => {
-  if (!SQUARE_ACCESS_TOKEN) return res.status(503).json({ error: 'Square not configured' });
-  // Square payment links redirect to success_url after payment; mark as paid on redirect
-  const { order_number } = req.body || {};
-  if (order_number) {
-    db.prepare("UPDATE orders SET payment_status='Paid', order_status='Processing' WHERE order_number=?").run(order_number);
+  if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) return res.status(503).json({ error: 'PayPal not configured' });
+  const { order_number, paypal_order_id } = req.body || {};
+  if (!paypal_order_id) return res.status(400).json({ error: 'Missing PayPal order ID' });
+  try {
+    const token = await getPayPalToken();
+    const resp = await fetch(PAYPAL_BASE + '/v2/checkout/orders/' + paypal_order_id + '/capture', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' }
+    });
+    const data = await resp.json();
+    if (data.status === 'COMPLETED') {
+      db.prepare("UPDATE orders SET payment_status='Paid', order_status='Processing' WHERE order_number=?").run(order_number);
+      res.json({ ok: true, paid: true });
+    } else {
+      res.status(400).json({ error: 'Payment not completed', status: data.status });
+    }
+  } catch (e) {
+    res.status(500).json({ error: e.message });
   }
-  res.json({ ok: true, paid: true });
-});
-
-// webhook (optional)
-app.post('/webhook', express.raw({ type: 'application/json' }), (req, res) => {
-  res.json({ received: true });
 });
 
 // ---------- Catalog (full game item database) ----------
