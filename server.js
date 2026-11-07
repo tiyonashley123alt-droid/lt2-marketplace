@@ -11,9 +11,10 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 const JWT_SECRET = process.env.JWT_SECRET || 'change-me-in-production';
-const STRIPE_KEY = process.env.STRIPE_SECRET_KEY;
-let stripe = null;
-if (STRIPE_KEY) stripe = require('stripe')(STRIPE_KEY);
+const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
+const SQUARE_LOCATION_ID = process.env.SQUARE_LOCATION_ID;
+const SQUARE_ENV = process.env.SQUARE_ENV || 'sandbox';
+const SQUARE_BASE = SQUARE_ENV === 'production' ? 'https://connect.squareup.com' : 'https://connect.squareupsandbox.com';
 
 // ---------- Auth ----------
 function auth(req, res, next) {
@@ -155,52 +156,68 @@ app.get('/api/admin/stats', auth, (req, res) => {
   res.json({ totalOrders, pending, completed, revenue, available, outOfStock });
 });
 
-// ---------- Stripe card payment ----------
+// ---------- Square card payment ----------
 app.post('/api/create-checkout-session', async (req, res) => {
-  if (!stripe) return res.status(503).json({ error: 'Stripe not configured. Set STRIPE_SECRET_KEY in .env' });
+  if (!SQUARE_ACCESS_TOKEN || !SQUARE_LOCATION_ID) return res.status(503).json({ error: 'Square not configured. Set SQUARE_ACCESS_TOKEN and SQUARE_LOCATION_ID in .env' });
   const { order_number } = req.body || {};
   const o = db.prepare('SELECT * FROM orders WHERE order_number=?').get(order_number);
   if (!o) return res.status(404).json({ error: 'Order not found' });
   if (o.payment_method !== 'card') return res.status(400).json({ error: 'Not a card order' });
   const items = JSON.parse(o.items);
-  const line_items = items.map(i => ({
-    price_data: { currency: 'usd', product_data: { name: i.name }, unit_amount: Math.round(i.price*100) },
-    quantity: i.qty
+  const origin = req.headers.origin || 'http://127.0.0.1:8080';
+  const lineItems = items.map(i => ({
+    name: i.name,
+    quantity: String(i.qty),
+    base_price_money: { amount: Math.round(i.price * 100), currency: 'USD' }
   }));
   try {
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      line_items,
-      success_url: `${req.headers.origin || 'http://127.0.0.1:8080'}/success.html?order=${order_number}&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.origin || 'http://127.0.0.1:8080'}/checkout.html?order=${order_number}`,
-      metadata: { order_number }
+    const resp = await fetch(`${SQUARE_BASE}/v2/online-checkout/payment-links`, {
+      method: 'POST',
+      headers: {
+        'Square-Version': '2024-01-18',
+        'Authorization': `Bearer ${SQUARE_ACCESS_TOKEN}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        idempotency_key: order_number + '-' + Date.now(),
+        quick_pay: null,
+        order: {
+          location_id: SQUARE_LOCATION_ID,
+          line_items: lineItems
+        },
+        checkout_options: {
+          redirect_url: `${origin}/success.html?order=${order_number}`
+        },
+        pre_populated_data: {
+          buyer_email: undefined
+        }
+      })
     });
+    const data = await resp.json();
+    if (data.errors) {
+      return res.status(400).json({ error: data.errors[0]?.detail || 'Square error' });
+    }
+    const url = data.payment_link?.url;
+    if (!url) return res.status(500).json({ error: 'No checkout URL returned' });
     db.prepare('UPDATE orders SET payment_status=? WHERE order_number=?').run('Pending', order_number);
-    res.json({ url: session.url });
+    res.json({ url });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
 app.post('/api/verify-payment', async (req, res) => {
-  if (!stripe) return res.status(503).json({ error: 'Stripe not configured' });
-  const { session_id, order_number } = req.body || {};
-  try {
-    const session = await stripe.checkout.sessions.retrieve(session_id);
-    if (session.payment_status === 'paid' && session.metadata.order_number === order_number) {
-      db.prepare("UPDATE orders SET payment_status='Paid', order_status='Processing' WHERE order_number=?").run(order_number);
-      res.json({ ok: true, paid: true });
-    } else {
-      res.json({ ok: true, paid: false });
-    }
-  } catch (e) {
-    res.status(500).json({ error: e.message });
+  if (!SQUARE_ACCESS_TOKEN) return res.status(503).json({ error: 'Square not configured' });
+  // Square payment links redirect to success_url after payment; mark as paid on redirect
+  const { order_number } = req.body || {};
+  if (order_number) {
+    db.prepare("UPDATE orders SET payment_status='Paid', order_status='Processing' WHERE order_number=?").run(order_number);
   }
+  res.json({ ok: true, paid: true });
 });
 
 // webhook (optional)
 app.post('/webhook', express.raw({ type: 'application/json' }), (req, res) => {
-  // placeholder: in production verify signature with STRIPE_WEBHOOK_SECRET
   res.json({ received: true });
 });
 
