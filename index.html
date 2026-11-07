@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LT2 Marketplace</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="brand-dot"></span><span class="brand-text">LT2 Marketplace</span></a>
+  <nav class="nav">
+    <a href="index.html" class="active">Home</a>
+    <a href="catalog.html">Catalog</a>
+    <a href="#featured">Featured</a>
+    <a href="#categories">Categories</a>
+  </nav>
+  <div class="searchbar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input id="search" placeholder="Search items…" oninput="renderGrid(currentCat, this.value)">
+  </div>
+  <button class="cart-btn" onclick="openCart()" aria-label="Cart">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <span class="cart-count" id="cartCount" style="display:none">0</span>
+  </button>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Lumber Tycoon 2 Marketplace</div>
+      <h1>Premium items for <span class="accent">Lumber Tycoon 2</span></h1>
+      <p>Browse the complete in-game item catalog. From rare axes to limited collectibles — find exactly what you need and pay with LT2 Money or card.</p>
+      <div class="hero-actions">
+        <a href="#featured" class="btn primary">Browse Shop</a>
+        <a href="catalog.html" class="btn ghost">View Catalog</a>
+      </div>
+    </div>
+    <div class="hero-visual">🌲</div>
+  </div>
+</section>
+
+<section class="section" id="categories">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Categories</h2>
+      <p class="section-subtitle">Explore the full LT2 item database</p>
+    </div>
+    <a href="catalog.html" class="section-link">View all →</a>
+  </div>
+  <div class="cat-grid" id="catGrid"></div>
+</section>
+
+<section class="section" id="featured">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Featured</h2>
+      <p class="section-subtitle">Hand-picked items from the shop</p>
+    </div>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Recently Listed</h2>
+      <p class="section-subtitle">New items added to the marketplace</p>
+    </div>
+  </div>
+  <div class="grid" id="recentGrid"></div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Simple and secure purchases</p>
+    </div>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <div class="cat-card-icon">1</div>
+      <div class="cat-card-name">Browse & Add</div>
+      <div class="cat-card-count">Find items in the catalog and add them to your cart</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-card-icon">2</div>
+      <div class="cat-card-name">Checkout</div>
+      <div class="cat-card-count">Enter your Roblox username and choose a payment method</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-card-icon">3</div>
+      <div class="cat-card-name">Meet In-Game</div>
+      <div class="cat-card-count">Pay with LT2 Money inside the game, seller confirms</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-card-icon">4</div>
+      <div class="cat-card-name">Delivery</div>
+      <div class="cat-card-count">Items delivered manually inside Lumber Tycoon 2</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">LT2 Marketplace</div>
+      <p class="footer-desc">A premium marketplace for Lumber Tycoon 2 in-game items. All items delivered manually inside the game.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="catalog.html">Catalog</a>
+      <a href="#featured">Featured</a>
+      <a href="#categories">Categories</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="order-status.html">Track Order</a>
+      <a href="mailto:lt2shoppurchase@gmail.com">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 LT2 Marketplace. Not affiliated with Roblox or Defaultio.</span>
+    <span>lt2shoppurchase@gmail.com</span>
+  </div>
+</footer>
+
+<div class="backdrop" id="backdrop" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="cart-head">
+    <h2>Your Cart</h2>
+    <button class="modal-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">LT2$0</span></div>
+    <button class="btn primary" style="width:100%" onclick="openCheckout()">Checkout</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="productModal" onclick="if(event.target===this)closeModal('productModal')">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modalName">Product</h2>
+      <button class="modal-close" onclick="closeModal('productModal')">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="checkoutModal" onclick="if(event.target===this)closeModal('checkoutModal')">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Checkout</h2>
+      <button class="modal-close" onclick="closeModal('checkoutModal')">✕</button>
+    </div>
+    <div class="modal-body" id="checkoutBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
