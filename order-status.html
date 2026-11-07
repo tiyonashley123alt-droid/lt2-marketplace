@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Order</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a href="index.html" class="brand"><span class="brand-dot"></span>LT2 Marketplace</a>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="catalog.html">Catalog</a>
+  </nav>
+</header>
+<div style="max-width:600px;margin:120px auto 60px;padding:0 20px">
+  <h1 style="font-size:32px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px">Track Your Order</h1>
+  <p style="color:var(--text-2);margin-bottom:32px">Enter your order number to check status</p>
+  <div style="display:flex;gap:8px;margin-bottom:24px">
+    <input id="orderNum" placeholder="Order number (e.g. LT2-XXXX)" style="flex:1;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px">
+    <button class="btn primary" onclick="track()">Track</button>
+  </div>
+  <div id="result"></div>
+</div>
+<script>
+async function track(){
+  const num = document.getElementById('orderNum').value.trim();
+  if(!num){ alert('Enter order number'); return; }
+  const r = await fetch('/api/orders/'+encodeURIComponent(num));
+  const d = await r.json();
+  const el = document.getElementById('result');
+  if(!r.ok){ el.innerHTML = '<div class="empty"><div class="empty-icon">∅</div><h3>Order not found</h3></div>'; return; }
+  el.innerHTML = `
+    <div class="admin-card">
+      <div style="font-size:13px;color:var(--text-3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Order</div>
+      <div style="font-size:20px;font-weight:700;color:var(--accent);margin-bottom:16px">${d.order_number}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><span style="color:var(--text-3);font-size:12px">Roblox</span><div style="font-weight:600">${d.roblox_username}</div></div>
+        <div><span style="color:var(--text-3);font-size:12px">Payment</span><div style="font-weight:600">${d.payment_method}</div></div>
+        <div><span style="color:var(--text-3);font-size:12px">Payment Status</span><div style="font-weight:600">${d.payment_status}</div></div>
+        <div><span style="color:var(--text-3);font-size:12px">Delivery Status</span><div style="font-weight:600">${d.delivery_status}</div></div>
+        <div><span style="color:var(--text-3);font-size:12px">Total</span><div style="font-weight:600;color:var(--accent)">LT2$${d.total.toLocaleString()}</div></div>
+        <div><span style="color:var(--text-3);font-size:12px">Date</span><div style="font-weight:600">${new Date(d.created_at).toLocaleDateString()}</div></div>
+      </div>
+    </div>`;
+}
+</script>
+</body>
+</html>
